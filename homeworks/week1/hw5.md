@@ -10,7 +10,11 @@
 * 瀏覽器透過作業系統和網路卡向 DNS 詢問 Google的位址，得到位址後再發 Request 到 Google server，Google server 再到自己的 Data base 找資料
 * Google server 回傳 Response 給網路卡、作業系統和瀏覽器，最後呈現畫面和內容給使用者看到  
 
+<<<<<<< HEAD
 ![圖片](https://i.imgur.com/vDufwAW.png)
+=======
+## 假設我今天去 Google 首頁搜尋框打上：JavaScript 並且按下 Enter，請說出從這一刻開始到我看到搜尋結果為止發生在背後的事情。
+>>>>>>> 8c752424bbada1df10d08ac34625b19e549572aa
 
 
 
