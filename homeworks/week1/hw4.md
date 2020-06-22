@@ -112,7 +112,6 @@ BUT !!! 在工作區 untracked 的檔案不會有變動，untracked 需用 add
 * `git reset` 分為三種模式，soft、mixed 和 hard，預設為 mixed 模式。三種模式的差異請看下圖。
 * 可以這樣用: `git reset --soft HEAD^` `git reset --hard <版本號>`  
 
-![](https://i.imgur.com/Q0KLXks.png)
 
 #### 3. 還沒 commit 但修改過的檔案想復原 `git checkout -- <檔案>`
 
