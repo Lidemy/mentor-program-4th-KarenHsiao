@@ -3,9 +3,7 @@ function join(arr, concatStr) {
 	if(arr.length == 0){
 		return result
 	}
-	else if(arr.length == 1){			// 如果 arr 長度為1，則另外單獨處理
-		result = arr[0] 
-	}else{
+	else{
  		for(let i=0; i<arr.length-1; i++){
   			result = result + arr[i] + concatStr
 		}
@@ -21,5 +19,5 @@ function repeat(str, times) {
   }
   return result
 }
-console.log(join(['w'], ',,'));
+console.log(join(['a'], ',,'));
 console.log(repeat('a', 5));
