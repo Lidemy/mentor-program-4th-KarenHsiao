@@ -8,7 +8,13 @@ request(`${API}name/${name}`,
   (error, response, body) => {
     if (error) return console.log('ERROR')
     if (response.statusCode !== 200) return console.log(response.statusCode)
-    const data = JSON.parse(body)
+    let data
+    try {
+      data = JSON.parse(body)
+    } catch (err) {
+      console.log(err)
+      return
+    }
     for (let i = 0; i < data.length; i += 1) {
       const money = data[i].currencies
       const telNumber = data[i].callingCodes

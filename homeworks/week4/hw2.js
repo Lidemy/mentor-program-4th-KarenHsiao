@@ -10,7 +10,13 @@ function list() {
     if (err) {
       return console.log('ERROR')
     }
-    const data = JSON.parse(body)
+    let data
+    try {
+      data = JSON.parse(body)
+    } catch (error) {
+      console.log(error)
+      return
+    }
     for (let i = 0; i < data.length; i += 1) {
       console.log(`${data[i].id} ${data[i].name}`)
     }
@@ -22,7 +28,13 @@ function read(id) {
     if (err) {
       return console.log('ERROR')
     }
-    const data = JSON.parse(body)
+    let data
+    try {
+      data = JSON.parse(body)
+    } catch (error) {
+      console.log(error)
+      return
+    }
     if (res.statusCode !== 200) return console.log(res.statusCode)
     console.log(`${data.id} ${data.name}`)
   })
