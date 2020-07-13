@@ -22,5 +22,7 @@ module.exports = {
   rules: {
     "no-console": "off",
     'linebreak-style': 0,
+    'semi':0,
+    'consistent-return':0
   },
 };
