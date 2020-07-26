@@ -1,0 +1,93 @@
+.wrapper{
+	background: rgb(246, 246, 239);
+	max-width: 85%;
+	margin:12px auto;
+	font-family: Verdana;
+}
+.header{
+	background: rgb(255,102,0);
+	height: 28px;
+	position: relative;
+	margin-bottom: 10px;
+}
+.header__content a{
+    text-decoration: none;
+	color: black;
+	font-size: 14px;
+}
+.header__content{
+	position: absolute;
+	top:3px;
+	
+}
+.logo{
+	padding: 2px;
+	background: white;
+	margin:2px;
+}
+.site-name{
+	font-size: 18px;
+	font-weight: bold;
+}
+.login{
+    
+    position: absolute;
+    top:3px;
+    right:-605px;
+}
+.footer{
+	text-align: center;
+    margin-top: 15px;
+}
+.options{
+	text-decoration: none;
+	color: black;
+	font-size: 14px;
+}
+.footer__search{
+	color: #828282;
+	font-size: 14px;
+	display: inline-block;
+	margin-top: 15px;
+}
+.content{
+	margin-left: 18px;
+	font-size: 14px;
+	color: #828282;
+}
+.content a{
+	text-decoration: none;
+	color: #828282;
+}
+#title {
+	color: black;
+	margin-left: 0;
+}
+.triangle{
+	width: 0;
+	height: 0;
+	border-bottom: 8px solid #828282;
+    border-top: 3px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    display: inline-block;
+    position: relative;
+    top: -3px;
+}
+.section{
+	margin-top:5px;
+}
+.points{
+	margin-left: 35px;
+}
+.more{
+	font-size: 14px;
+	text-decoration: none;
+	color: black;
+	margin: 20px 50px;
+    display: block;
+}
+.bottom-line{
+	height: 3px;
+	background: rgb(255,102,0);
+}
