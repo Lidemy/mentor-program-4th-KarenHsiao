@@ -10,7 +10,7 @@
 ![](https://i.imgur.com/gEPjrjN.png?2)
 
 ### < details>, < summary>
-< details> 用來延伸或展開訊息內容，當網頁載入時是隱藏收起的狀態。可用於 F&Q 時。
+< details> 用來延伸或展開訊息內容，當網頁載入時是隱藏收起的狀態。可用於 FAQ 時。
 < summary> 可作為 < details> 的標題或內容摘要。
 ```htmlmixed=
 <details>
