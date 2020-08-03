@@ -42,7 +42,7 @@ body{
     border: 2px solid #373C71;
     font-size: 17px;
 }
-.todo__item{
+.todo-item{
 	display: flex;
 	align-items: center;
     margin-top: 12px;

@@ -120,7 +120,7 @@ h2{
 .answer{
 	display: none;
 }
-.answer0{
+.answer__show{
 	font-size: 16px;
 	line-height: 1.5em;
 	margin-bottom: 10px;

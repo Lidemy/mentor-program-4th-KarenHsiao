@@ -117,7 +117,7 @@
 
 	  for(let i=0; i<textItem.length; i++) {
 	    if(textItem[i].value == '') {
-	    	//e.preventDefault()
+	    	e.preventDefault()
 	    	let item = textName[i]
 		    document.querySelector('input[name='+item+'] + div').classList.add('active')
 		    isEmpty = true

@@ -39,7 +39,7 @@
               <h2>
                 如何辦理退貨？
               </h2>
-              <div class="answer answer0">
+              <div class="answer answer__show">
               線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
               </div>
             </div>
@@ -52,7 +52,7 @@
               <h2>
                 如何辦理退貨？
               </h2 >
-              <div class="answer answer0">
+              <div class="answer answer__show">
               線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
               </div>
             </div>
@@ -65,7 +65,7 @@
               <h2>
                 如何辦理退貨？
               </h2>
-              <div class="answer answer0">
+              <div class="answer answer__show">
               線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
               </div>
             </div>
@@ -78,7 +78,7 @@
               <h2>
                 如何辦理退貨？
               </h2>
-              <div class="answer answer0">
+              <div class="answer answer__show">
               線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
               </div>
             </div>
@@ -115,7 +115,7 @@
       let target = e.target.closest(".que")
       for(let i=0; i<element.length; i++){
         if(element[i].innerText == target.innerText){     //判斷點擊到的是哪個 element
-           const clickItem = element[i].querySelector('.answer0')  
+           const clickItem = element[i].querySelector('.answer__show')  
            /*使用 toggle 若要反覆 on/off，做 Selector的 class 不能跟做 toggle效果的 class 同一個，
            因為 toggle 會把效果 class off 掉，這時 Selector 就會選不到東西 */
            clickItem.classList.toggle('answer')    //此 class 為要做的效果

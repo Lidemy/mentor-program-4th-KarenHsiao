@@ -25,13 +25,14 @@
 			if(addContent){
 				const element = document.querySelector('.todo') 
 				const item = document.createElement('div')
-				item.classList.add('todo__item')
+				item.classList.add('todo-item')
 				item.innerHTML = `
 				<input type="checkbox"  class="todo-box" style="width:20px;height:20px">
 				<div class="todo-content">${addContent}</div>
 				<button name="btn-del" class="btn-del btn">Delete</button>
 				`
 				element.appendChild(item)
+				
 			}else{
 				alert('please add something to do ')
 			}
@@ -41,7 +42,7 @@
 		document.querySelector('.todo').addEventListener('click',
 			function(e){
 			     if(e.target.classList.contains('btn-del')){
-					document.querySelector('.todo').removeChild(e.target.closest('.todo__item'))
+					document.querySelector('.todo').removeChild(e.target.closest('.todo-item'))
 				}
 		    }
 		)
