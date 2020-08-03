@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FAQ - 常見問題</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="wrapper">
+	  <div class="navbar__site-name">
+	  	Just A Bite!
+	  </div>
+　    <ul class="navbar__list">
+		<li><a href="#">抽個大獎</a></li>
+	  	<li><a href="#">我要點餐</a></li>
+	  	<li><a href="#">查詢訂單</a></li>
+	  	<li class="active"><a href="#">常見問題</a></li>
+	　</ul>
+    </div>
+  </nav>
+  
+  <div class="wrapper">
+    <section class="section">
+      <h1 class="section__title">
+  		  FAQ - 常見問題
+  	  </h1>
+  	  <div class="faq">
+        <div class="faq-que">
+          <div class='que'>
+            <div class="num">
+              Q1:
+            </div>
+            <div class="content">
+              <h2>
+                如何辦理退貨？
+              </h2>
+              <div class="answer answer0">
+              線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+              </div>
+            </div>
+          </div>
+          <div class='que'>
+            <div class="num">
+              Q2:
+            </div>
+            <div class="content">
+              <h2>
+                如何辦理退貨？
+              </h2 >
+              <div class="answer answer0">
+              線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+              </div>
+            </div>
+          </div>
+          <div class='que'>
+            <div class="num">
+              Q3:
+            </div>
+            <div class="content">
+              <h2>
+                如何辦理退貨？
+              </h2>
+              <div class="answer answer0">
+              線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+              </div>
+            </div>
+          </div>
+          <div class='que'>
+            <div class="num">
+              Q4:
+            </div>
+            <div class="content">
+              <h2>
+                如何辦理退貨？
+              </h2>
+              <div class="answer answer0">
+              線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer>
+  	<div class="footer__top">
+  		<div class="footer__info">
+  			<p class="footer__content">
+  				餐館地址: 天上地下天堂路三分之一里六段520號<br>
+  				訂位專線：02-1314-5566<br>
+  				營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息<br>
+  				email：service@justabite.com.tw
+  			</p>
+  		</div>
+  		<div class="footer__site">
+  			<div>Just A Bite!</div>
+  			<a href="#">Facebook</a>
+  			<a href="#">/Instagram</a>
+  			<a href="#">/Youtube</a>
+  		</div>
+  	</div>
+  	<div class="footer__bottom">
+  		Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有
+  	</div>
+  </footer>
+
+  <script>
+    document.querySelector('.faq-que').addEventListener('click', function(e){
+      const element = document.querySelectorAll('.que')
+      let target = e.target.closest(".que")
+      for(let i=0; i<element.length; i++){
+        if(element[i].innerText == target.innerText){     //判斷點擊到的是哪個 element
+           const clickItem = element[i].querySelector('.answer0')  
+           /*使用 toggle 若要反覆 on/off，做 Selector的 class 不能跟做 toggle效果的 class 同一個，
+           因為 toggle 會把效果 class off 掉，這時 Selector 就會選不到東西 */
+           clickItem.classList.toggle('answer')    //此 class 為要做的效果
+        }
+      }
+    })
+  </script>
+</body>
+</html>

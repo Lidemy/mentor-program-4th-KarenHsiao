@@ -1,0 +1,69 @@
+body{
+	background: #D8F1FA;
+}
+.wrapper{
+	background:#FBF6D0;
+	max-width: 720px;
+	margin: 100px auto;
+	padding:30px;
+	font-family: Microsoft JhengHei;
+}
+
+.title{
+	color: #373C71;
+	font-size: 64px;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 3px solid #373C71;
+}
+.add{
+	margin:20px;
+	text-align: center;
+}
+.text-add{
+	padding: 10px 100px 10px 10px;
+	border-style: hidden;
+    font-size: 24px;
+}
+.btn-add{
+	position: relative;
+    right: -30px;
+    border-radius: 25px;
+ 	outline: 0;
+    border: 2px solid #373C71;
+    background: transparent;
+    font-size: 25px;
+
+}
+.btn-del{
+    background: transparent;
+    border-radius: 25px;
+    outline: 0;
+    border: 2px solid #373C71;
+    font-size: 17px;
+}
+.todo__item{
+	display: flex;
+	align-items: center;
+    margin-top: 12px;
+    padding: 12px;
+}
+.todo-box{
+	margin-right: 15px;
+}
+.todo-content{
+	flex:1;
+	font-size: 30px;
+    color: #373C71;
+    text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.btn{
+	cursor: pointer;
+	transition: all 0.2s ease-in;
+}
+.btn:hover{
+	background: #373C71;
+	color: white;
+}

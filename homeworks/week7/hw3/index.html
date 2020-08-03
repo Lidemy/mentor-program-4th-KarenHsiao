@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ToDo List</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div class='title'>Todo List</div>
+		</div>
+		<div class="add">
+			<input type="text" class="text-add" placeholder="Add something to do">
+			<button name="btn-add" class="btn-add btn">Add</button>
+	    </div>
+	    <div class="todo">
+	    </div>
+	</div>
+	<script>
+		document.querySelector('.btn-add').addEventListener('click', function(){
+			const addContent = document.querySelector('.text-add').value
+			if(addContent){
+				const element = document.querySelector('.todo') 
+				const item = document.createElement('div')
+				item.classList.add('todo__item')
+				item.innerHTML = `
+				<input type="checkbox"  class="todo-box" style="width:20px;height:20px">
+				<div class="todo-content">${addContent}</div>
+				<button name="btn-del" class="btn-del btn">Delete</button>
+				`
+				element.appendChild(item)
+			}else{
+				alert('please add something to do ')
+			}
+		})
+
+		// 以下為刪除 todo 功能
+		document.querySelector('.todo').addEventListener('click',
+			function(e){
+			     if(e.target.classList.contains('btn-del')){
+					document.querySelector('.todo').removeChild(e.target.closest('.todo__item'))
+				}
+		    }
+		)
+	
+	</script>
+</body>
+</html>
