@@ -21,7 +21,7 @@
 	</div>
 	<script>
 		document.querySelector('.btn-add').addEventListener('click', function(){
-			const addContent = document.querySelector('.text-add').value
+			let addContent = document.querySelector('.text-add').value
 			if(addContent){
 				const element = document.querySelector('.todo') 
 				const item = document.createElement('div')
@@ -32,7 +32,8 @@
 				<button name="btn-del" class="btn-del btn">Delete</button>
 				`
 				element.appendChild(item)
-				
+				document.querySelector('.text-add').value = ''  
+				//注意不是用變數 addContent 去做清空，addContent 只是一個放 text-add 值的地方，要選到 text-add 這裡做清空
 			}else{
 				alert('please add something to do ')
 			}

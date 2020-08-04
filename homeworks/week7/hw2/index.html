@@ -113,14 +113,16 @@
     document.querySelector('.faq-que').addEventListener('click', function(e){
       const element = document.querySelectorAll('.que')
       let target = e.target.closest(".que")
+      target.querySelector('.answer__show').classList.toggle('answer')
+      /* 以下為未看範例影片自己做的，在判斷部分是脫褲子放屁，因為已經用 e.target 抓到點擊的位置所以不用在判斷是點到哪裡
       for(let i=0; i<element.length; i++){
         if(element[i].innerText == target.innerText){     //判斷點擊到的是哪個 element
            const clickItem = element[i].querySelector('.answer__show')  
-           /*使用 toggle 若要反覆 on/off，做 Selector的 class 不能跟做 toggle效果的 class 同一個，
-           因為 toggle 會把效果 class off 掉，這時 Selector 就會選不到東西 */
+           使用 toggle 若要反覆 on/off，做 Selector的 class 不能跟做 toggle效果的 class 同一個，
+           因為 toggle 會把效果 class off 掉，這時 Selector 就會選不到東西 
            clickItem.classList.toggle('answer')    //此 class 為要做的效果
         }
-      }
+      }*/
     })
   </script>
 </body>

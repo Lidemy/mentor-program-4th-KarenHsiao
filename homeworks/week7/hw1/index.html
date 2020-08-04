@@ -82,6 +82,7 @@
 		</div>
 		
 	  </section>
+	
 	  <section class="section">
 	    <div class="question">
 		  其他    
@@ -110,12 +111,23 @@
   <script >
 	document.querySelector('input[name=submit]').addEventListener('click', function(e){
 	  const textItem = document.querySelectorAll('.text')
-	  const textName = ['name', 'email','phoneNumber','howToKnow']
+	  //const textName = ['name', 'email','phoneNumber','howToKnow'] 未看影片自己做的，缺乏擴充性
 	  const radioItem = document.querySelectorAll('input[name=sign-up]')
 	  const radioId = ['bed', 'cellphone']  
 	  let isEmpty = false
 
-	  for(let i=0; i<textItem.length; i++) {
+	  	for(let i=0; i<textItem.length; i++) {
+	    if(textItem[i].value == '') {
+	    	e.preventDefault()
+		    textItem[i].parentNode.querySelector('.error').classList.add('active')
+		    isEmpty = true
+	    }
+	    if(textItem[i].value){
+	    	textItem[i].parentNode.querySelector('.error').classList.remove('active')
+		    isEmpty = true
+	    }
+	  }
+	  /*for(let i=0; i<textItem.length; i++) {
 	    if(textItem[i].value == '') {
 	    	e.preventDefault()
 	    	let item = textName[i]
@@ -126,7 +138,7 @@
 	    	let item = textName[i]
 	    	document.querySelector('input[name='+item+'] + div').classList.remove('active')
 	    }
-	  }
+	  }*/
 
 	  let isRadioEmpty = false
 	  for(let i=0; i<radioItem.length; i++) {
