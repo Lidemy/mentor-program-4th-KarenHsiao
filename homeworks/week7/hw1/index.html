@@ -124,7 +124,6 @@
 	    }
 	    if(textItem[i].value){
 	    	textItem[i].parentNode.querySelector('.error').classList.remove('active')
-		    isEmpty = true
 	    }
 	  }
 	  /*for(let i=0; i<textItem.length; i++) {
@@ -154,8 +153,9 @@
 	  }else{
 	  	document.querySelector('.answer + div').classList.remove('active')
 	  }
-
+	
 	  if(!isEmpty){
+	  	
 	 	let str = ''
 	 	for(let i=0; i< textItem.length; i++){
 	 	  str = str + textItem[i].value +'\n'
