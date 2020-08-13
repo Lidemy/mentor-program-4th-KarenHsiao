@@ -62,6 +62,7 @@
 }
 .background__none-img{
 	background: black;
+	padding:25px;
 }
 .message{
 	background: white;

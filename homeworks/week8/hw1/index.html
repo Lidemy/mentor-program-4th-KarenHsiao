@@ -23,7 +23,7 @@
 	　</ul>
     </div>
   </nav>
-  <div class=" background__img">
+  <div class="background__img">
     <div class="message">
       <div class="title">
         2020 夏日輕盈特賞！ 抽獎活動辦法
@@ -97,61 +97,56 @@
         var request = new XMLHttpRequest()
         request.open('GET','https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery',true)
         request.onload = function(){
-          if(request.status >= 200 && request.status<400){
-            var value = JSON.parse(request.responseText)
-            console.log(value)
-            const prizeItem = {
-              FIRST: {
-                title: '恭喜你中頭獎了！日本東京來回雙人遊！',
-                img: 'background__first-img'
-              },
-              SECOND: {
-                title: '二獎！90 吋電視一台！',
-                img: 'background__second-img'
-              },
-              THIRD: {
-                title: '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！',
-                img: 'background__third-img'
-              },
-              NONE: {
-                title: '銘謝惠顧',
-                img: 'background__none-img'
+          const prizeItem = {
+                  FIRST: {
+                    title: '恭喜你中頭獎了！日本東京來回雙人遊！',
+                    img: 'background__first-img'
+                  },
+                  SECOND: {
+                    title: '二獎！90 吋電視一台！',
+                    img: 'background__second-img'
+                  },
+                  THIRD: {
+                    title: '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！',
+                    img: 'background__third-img'
+                  },
+                  NONE: {
+                    title: '銘謝惠顧',
+                    img: 'background__none-img'
+                  }
               }
-           }
-
-            prizes(prizeItem[value.prize].title, prizeItem[value.prize].img)
-            if(value.error == 'true'){
-              alert('系統不穩定，請再試一次')
-            }
-            function prizes(title, img){
-              const element = document.createElement('div')
-              const bg = document.querySelector('.background__img')
-              element.innerText = `${title}`
-              document.querySelector('.result__content').appendChild(element)
-              document.querySelector('.result').classList.remove('hide')
-              document.querySelector('.message').classList.add('hide')
-              bg.classList.remove('background__img')
-              bg.classList.add(`${img}`)
-
-              document.querySelector('.lottery-again__btn').addEventListener('click',
-                function(){
-                  
-                  document.querySelector('.result').classList.add('hide')
-                  document.querySelector('.message').classList.remove('hide')
-                  bg.classList.add('background__img')
-                  bg.classList.remove(`${img}`)
-                  const delNode = document.querySelector('.result__content div')
-                  console.log(delNode)
-                  document.querySelector('.result__content').removeChild(delNode)
-                  
-                })
-            }
+          if(request.status >= 200 && request.status<400){
+              var value = JSON.parse(request.responseText)
+              if(value.error == 'true'){
+                alert('系統不穩定，請再試一次')
+              }
+              prizes(prizeItem[value.prize].title, prizeItem[value.prize].img)
+              function prizes(title, img){
+                  const element = document.createElement('div')
+                  const bg = document.querySelector('.background__img')
+                  element.innerText = `${title}`
+                  document.querySelector('.result__content').appendChild(element)
+                  document.querySelector('.result').classList.remove('hide')
+                  document.querySelector('.message').classList.add('hide')
+                  bg.classList.remove('background__img')
+                  bg.classList.add(`${img}`)        
+              }
           }else{
             alert('系統不穩定，請再試一次')
           }
         }
         request.send()
-      })
+      }
+    )
+    document.querySelector('.lottery-again__btn').addEventListener('click',function (){
+       const resultBg = document.querySelector('nav+div')
+       document.querySelector('.result').classList.add('hide') 
+       document.querySelector('.message').classList.remove('hide')
+       resultBg.className = ''
+       resultBg.classList.add('background__img')
+       const delNode = document.querySelector('.result__content div') 
+       document.querySelector('.result__content').removeChild(delNode)
+     }) 
   </script>
 </body>
 </html>
