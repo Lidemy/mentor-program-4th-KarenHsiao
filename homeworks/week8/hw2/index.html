@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Twitch Live Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+</head>
+<body>
+	<nav class="navbar">
+		<div class="navbar__name">
+			Twitch Top Game
+		</div>
+		<ul class="navbar__list">
+			<li class="no1"></li>
+			<li class="no2"></li>
+			<li class="no3"></li>
+			<li class="no4"></li>
+			<li class="no5"></li>
+		</ul>
+	</nav>
+	<div class="live-game">
+		<div class="wrapper">
+			<div class="live-game__intro">	
+				<div class="game">
+				</div>
+				<div class="content">
+					Top 20 popular live streams sorted by current viewers
+				</div>
+			</div>
+			<div class="live-game__item">
+				
+			</div>	
+		</div>
+	</div>
+	<script>
+		var request = new XMLHttpRequest()		//load top 5 game
+		request.open('GET','https://api.twitch.tv/kraken/games/top?limit=5',true)
+		request.setRequestHeader('Client-ID', 'y67umroy0gkuh37hfdjh5bnfdybge4')
+		request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
+		request.onload = function(){
+			if(request.status>=200 && request.status<400){
+				const value = JSON.parse(request.responseText)
+				for(let i=0; i<value.top.length; i++){					//navbar 抓取前五名的遊戲名稱
+					const topGame = document.querySelector(`.no${i+1}`)
+					topGame.innerText = `${value.top[i].game.name}`
+				}
+				const gameName = document.querySelector('.game')
+				gameName.innerText = value.top[0].game.name 		//在 onload 時把 no1 遊戲先顯示出來
+				streamImg(value.top[0].game.name )						//在 onload 時把 no1 遊戲的 stream img 顯示出來
+				document.querySelector('.navbar__list').addEventListener('click',	//偵測點擊到哪一個遊戲
+					function(e){
+						const game = e.target.textContent
+						gameName.innerText = game 			//將 class="game" 換成點擊到的遊戲名字
+						streamImg(game)						//顯示點擊到的遊戲 stream img
+					}
+				)
+			}
+		}
+		request.send()
+		
+		function streamImg(game){			//遊戲 stream img
+			var requestImg = new XMLHttpRequest()			//load streams img
+			requestImg.open('GET',`https://api.twitch.tv/kraken/streams/?game=${game}&limit=20`,true)
+			requestImg.setRequestHeader('Client-ID', 'y67umroy0gkuh37hfdjh5bnfdybge4')
+			requestImg.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
+			requestImg.onload = function(){
+				const data = JSON.parse(requestImg.responseText)
+				//console.log(data)
+				let str = ''
+				const liveGame = document.querySelector('.live-game__item')
+				for(let i=0; i<data.streams.length;i++){		//用迴圈做每個 img
+					//innerHTML 每一次都會把內容清空再增加 HTML 因此要用一個變數把先前的值存下
+					str += `<div class="item">					
+							<img src=${data.streams[i].preview.large}>
+							<div class="item__content">
+								<div class="avatar">
+									<img src=${data.streams[i].channel.logo}>
+								</div>
+								<div class="stream__content">
+									<div class="content__title">${data.streams[i].channel.status}
+									</div>
+									<div class="content__chanel">
+									${data.streams[i].channel.display_name}
+									</div>
+								</div>
+							</div>
+						 </div>`
+						 
+				}
+				liveGame.innerHTML = str
+			}
+			requestImg.send()
+		}	
+	</script>
+</body>
+</html>
