@@ -36,6 +36,7 @@
 	</div>
 	<script>
 		var request = new XMLHttpRequest()		//load top 5 game
+		const gameName = document.querySelector('.game')
 		request.open('GET','https://api.twitch.tv/kraken/games/top?limit=5',true)
 		request.setRequestHeader('Client-ID', 'y67umroy0gkuh37hfdjh5bnfdybge4')
 		request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
@@ -46,20 +47,19 @@
 					const topGame = document.querySelector(`.no${i+1}`)
 					topGame.innerText = `${value.top[i].game.name}`
 				}
-				const gameName = document.querySelector('.game')
+				
 				gameName.innerText = value.top[0].game.name 		//在 onload 時把 no1 遊戲先顯示出來
 				streamImg(value.top[0].game.name )						//在 onload 時把 no1 遊戲的 stream img 顯示出來
-				document.querySelector('.navbar__list').addEventListener('click',	//偵測點擊到哪一個遊戲
+			}
+		}
+		request.send()
+		document.querySelector('.navbar__list').addEventListener('click',	//偵測點擊到哪一個遊戲
 					function(e){
 						const game = e.target.textContent
 						gameName.innerText = game 			//將 class="game" 換成點擊到的遊戲名字
 						streamImg(game)						//顯示點擊到的遊戲 stream img
 					}
 				)
-			}
-		}
-		request.send()
-		
 		function streamImg(game){			//遊戲 stream img
 			var requestImg = new XMLHttpRequest()			//load streams img
 			requestImg.open('GET',`https://api.twitch.tv/kraken/streams/?game=${game}&limit=20`,true)

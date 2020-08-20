@@ -94,10 +94,7 @@
   <script>
     document.querySelector('.lottery__btn').addEventListener('click',
       function(){
-        var request = new XMLHttpRequest()
-        request.open('GET','https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery',true)
-        request.onload = function(){
-          const prizeItem = {
+      	const prizeItem = {
                   FIRST: {
                     title: '恭喜你中頭獎了！日本東京來回雙人遊！',
                     img: 'background__first-img'
@@ -115,26 +112,30 @@
                     img: 'background__none-img'
                   }
               }
+        var request = new XMLHttpRequest()
+        request.open('GET','https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery',true)
+        request.onload = function(){
           if(request.status >= 200 && request.status<400){
               var value = JSON.parse(request.responseText)
               if(value.error == 'true'){
                 alert('系統不穩定，請再試一次')
               }
               prizes(prizeItem[value.prize].title, prizeItem[value.prize].img)
-              function prizes(title, img){
-                  const element = document.createElement('div')
-                  const bg = document.querySelector('.background__img')
-                  element.innerText = `${title}`
-                  document.querySelector('.result__content').appendChild(element)
-                  document.querySelector('.result').classList.remove('hide')
-                  document.querySelector('.message').classList.add('hide')
-                  bg.classList.remove('background__img')
-                  bg.classList.add(`${img}`)        
-              }
+              
           }else{
             alert('系統不穩定，請再試一次')
           }
         }
+        function prizes(title, img){
+            const element = document.createElement('div')
+            const bg = document.querySelector('.background__img')
+            element.innerText = `${title}`
+      		document.querySelector('.result__content').appendChild(element)
+            document.querySelector('.result').classList.remove('hide')
+            document.querySelector('.message').classList.add('hide')
+            bg.classList.remove('background__img')
+            bg.classList.add(`${img}`)        
+         }
         request.send()
       }
     )
