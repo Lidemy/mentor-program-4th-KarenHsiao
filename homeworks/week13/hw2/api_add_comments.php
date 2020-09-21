@@ -44,9 +44,10 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $json = array(					//如何用 array_push 在 $json 裡插入一個物件
 		'ok'=> true,
-		'message'=> 'success!',
-		'total_comments'=>$row['COUNT(*)']
+		'message'=> 'success!'
 	);
+
+$json['total_comments'] = $row['COUNT(*)'];
 $response = json_encode($json);
 echo $response;
 ?>

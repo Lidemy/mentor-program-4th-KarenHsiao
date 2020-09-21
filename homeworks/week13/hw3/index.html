@@ -81,6 +81,7 @@
 			}
 			liveGame.innerHTML = str
 		}
+
 		const url = 'https://api.twitch.tv/kraken/games/top?limit=5'
 		const gameName = document.querySelector('.game')
 		fetch(url, {
@@ -94,6 +95,7 @@
 				return
 			}
 		}).then(json =>{
+
 			topGame(json)
 		})
 		document.querySelector('.navbar__list').addEventListener('click',	//偵測點擊到哪一個遊戲
