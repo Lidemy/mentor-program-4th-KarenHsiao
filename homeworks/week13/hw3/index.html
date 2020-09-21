@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Twitch Live Game</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<meta charset="utf-8">
+	<title>Twitch Live Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 </head>
 <body>
 	<nav class="navbar">
@@ -30,7 +30,6 @@
 				</div>
 			</div>
 			<div class="live-game__item">
-				
 			</div>	
 		</div>
 	</div>
@@ -41,11 +40,11 @@
 		}
 		function topGame(data){
 			for(let i=0; i<data.top.length; i++){					//navbar 抓取前五名的遊戲名稱
-					const topGame = document.querySelector(`.no${i+1}`)
-					topGame.innerText = `${data.top[i].game.name}`
-				}
-				gameName.innerText = data.top[0].game.name 		//在 onload 時把 no1 遊戲先顯示出來
-				streamImg(data.top[0].game.name )	
+				const topGame = document.querySelector(`.no${i+1}`)
+				topGame.innerText = `${data.top[i].game.name}`
+			}
+			gameName.innerText = data.top[0].game.name 		//在 onload 時把 no1 遊戲先顯示出來
+			streamImg(data.top[0].game.name )	
 		}
 		function streamImg(game){
 			const url = `https://api.twitch.tv/kraken/streams/?game=${game}&limit=20`
@@ -63,21 +62,24 @@
 			const liveGame = document.querySelector('.live-game__item')
 			for(let i=0; i<data.streams.length;i++){		//用迴圈做每個 img
 				//innerHTML 每一次都會把內容清空再增加 HTML 因此要用一個變數把先前的值存下
-				str += `<div class="item">					
+				str += `
+					<div class="item">					
 						<img src=${data.streams[i].preview.large}>
 						<div class="item__content">
 							<div class="avatar">
 								<img src=${data.streams[i].channel.logo}>
 							</div>
 							<div class="stream__content">
-								<div class="content__title">${data.streams[i].channel.status}
+								<div class="content__title">
+									${data.streams[i].channel.status}
 								</div>
 								<div class="content__chanel">
-								${data.streams[i].channel.display_name}
+									${data.streams[i].channel.display_name}
 								</div>
 							</div>
 						</div>
-					 </div>`			 
+					</div>
+					`			 
 			}
 			liveGame.innerHTML = str
 		}
@@ -90,12 +92,11 @@
 		}).then(response =>{
 			if(response.status>=200 && response.status<400){
 				return response.json()
-			}else{
+			} else {
 				alert('Error')
 				return
 			}
 		}).then(json =>{
-
 			topGame(json)
 		})
 		document.querySelector('.navbar__list').addEventListener('click',	//偵測點擊到哪一個遊戲
