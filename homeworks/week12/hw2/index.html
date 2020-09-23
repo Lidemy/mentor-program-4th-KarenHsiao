@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TODO LIST</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<style>
+		body{
+			background: #F6EFEF;
+		}
+		.container{
+			display: block;
+		}
+		.nav{
+			justify-content: space-between;
+			margin: 30px 50px 30px 200px;
+		}
+		li:hover{
+			background: #DAD7D7;
+			cursor: pointer;
+		}
+		.container{
+			width:70%;
+		}
+		#basic-addon2{
+			padding-left: 50px;
+    		padding-right: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+	   <h1>TODO LIST</h1>
+		
+		<ul class="list-group list-group-horizontal">
+		  <li class="list-group-item save">Save</li>
+		  <li class="list-group-item all">All</li>
+		  <li class="list-group-item activeLi">Active</li>
+		  <li class="list-group-item done">Done</li>
+		  <li class="list-group-item clear_completed">Clear Completed</li>
+		</ul>
+	
+	</div>
+	<div class="container">
+		<div class="input-group mb-3">
+		  <input type="text" class="form-control add_content" placeholder="What needs to be done ?">
+		  <div class="input-group-append">
+		    <span class="input-group-text" id="basic-addon2">Add</span>
+		  </div>
+		</div>
+		<div class="content">
+		</div>
+</div>
+	<script>
+		function escapeOutput(toOutput){
+		   return toOutput.replace(/\&/g, '&amp;')
+	        .replace(/\</g, '&lt;')
+	        .replace(/\>/g, '&gt;')
+	        .replace(/\"/g, '&quot;')
+	        .replace(/\'/g, '&#x27')
+	        .replace(/\//g, '&#x2F');
+	    }
+		function hide(status){
+			$(`input[type=checkbox]${status}`).each(function () {  
+			  $(this).parents('.input-group').hide()
+		    })
+		}
+		function show(status){
+			$(`input[type=checkbox]${status}`).each(function () {  
+			  $(this).parents('.input-group').show()
+		    })
+		}
+		function appendTodo(DOM, value, checked){
+ 				var ischecked = checked ? 'checked': ''
+				$(DOM).append(`
+			          <div class="input-group mb-3">
+				  		<div class="input-group-prepend">
+				    		<div class="input-group-text">
+				      			<input type="checkbox" class="checkbox" ${ischecked} style="width:20px;height:20px">
+				    		</div>
+				  		</div>
+				  		<input type="text" class="form-control todo_content" aria-label="Text input with checkbox" value=${value}>
+				  		<div class="input-group-append">
+					    	<span class="input-group-text" id="btn_del">DEL</span>
+					  </div>
+					</div>
+			    `)
+		}
+		function getId(length){
+			const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+			let result = ""
+			for(let i=0; i<length; i++){
+				let number = Math.floor(Math.random() * characters.length)
+				result += characters.charAt(number)
+			}
+			return result
+		}
+		function getTodo(id){
+			$.ajax({
+				type: 'POST',
+				url: 'http://mentor-program.co/mtr04group3/Karen%20Hsiao/week12/hw2_api_todo-list/get_todo.php',
+				data: {
+					id : id
+				}
+				}).done(function(data){
+					var data = JSON.parse(data.get_data)
+					if(!data){
+						alert('Can not find this id, Please try again.')
+						return
+					}
+					var checked = data.checked
+					var content = data.content
+					for(let i=0; i<checked.length; i++){
+					  appendTodo('.content', content[i], checked[i])
+				    }
+				})
+		}
+		$(document).ready(function(){
+			var hasId = location.search ? true:false
+			if(hasId){
+				var str_id = location.search.split('=')
+			   	var id = str_id[1]
+			   	getTodo(id)
+			}
+			
+	        $('#basic-addon2').click(function(){	//新增 todo
+	          const value = escapeOutput($('.form-control').val())
+	          if(!value){
+	          	alert('Please input todo')
+	          	return
+	          }
+	          appendTodo('.content', value, false)
+		        $('.add_content').val('')
+	        })
+
+		    $('.content').on('click', '#btn_del', function(e){   //事件代理做刪除
+		        $(e.target).parents('.input-group').remove()
+		      })
+		    $('.all').click(function(){
+				show('')
+		    })
+		    $('.activeLi').click(function(){	//顯示未完成
+		    	hide(':checked')
+		    	show(':not(:checked)')
+			
+		    })
+		    $('.done').click(function(){	//顯示已完成
+				hide(':not(:checked)')
+		    	show(':checked')
+		    })
+		    $('.clear_completed').click(function(){		//清空已完成
+		    	$('input[type=checkbox]:checked').each(function () {  
+			       $(this).parents('.input-group').remove()
+		        })
+		    })
+		      $('.save').click(function(){ 	 // Save Todo
+		    	hasId = location.search ? true:false
+		   		if(!hasId){
+		   			var id = getId(10)
+		   			alert(`Your Id is ${id}. Please remember your Id and use it on URL to get your TODO LIST.`)
+		   		}else{
+		   			var str_id = location.search.split('=')
+		   			var id = str_id[1]
+		   		}
+		   		
+		      	let saveTodoChecked = []
+		      	let saveTodoContent = []
+		      	$('.checkbox').each(function(){
+		    	  saveTodoChecked.push($(this).prop('checked'))
+		        })
+		      	$('.todo_content').each(function(){
+		    	  saveTodoContent.push($(this).val())
+		        })
+		      	
+		    	let json = {
+		    		checked : saveTodoChecked,
+		    		content : saveTodoContent
+		    	}
+				const result = JSON.stringify(json)
+			    	$.ajax({
+					type: 'POST',
+					url: 'http://mentor-program.co/mtr04group3/Karen%20Hsiao/week12/hw2_api_todo-list/save_todo.php',
+					data: {
+						id : id,
+						todo : result
+					}
+					}).done(function(data){
+						location.href=`http://mentor-program.co/mtr04group3/Karen%20Hsiao/week12/hw2_api_todo-list/index.html?id=${data.user_id}`
+						alert(data.message)
+					})
+		    })
+        })
+	</script>
+</body>
+</html>
