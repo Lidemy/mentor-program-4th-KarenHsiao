@@ -23,6 +23,10 @@ module.exports = {
     "no-console": "off",
     'linebreak-style': 0,
     'semi':0,
-    'consistent-return':0
+    'consistent-return':0,
+    'no-plusplus': 'off',
+    "prefer-arrow-callback": "off",
+    "prefer-destructuring": "off",
+    "object-shorthand": 0
   },
 };
