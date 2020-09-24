@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>week13 Webpack_message board</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="./dist/main.js"></script>
+<script>
+	$(document).ready(()=>{
+		commentPlugin.init({
+			site_key: 'aa',
+			apiURL: 'http://mentor-program.co/mtr04group3/Karen%20Hsiao/week13/hw2_webpack',
+			containerSelector: '.container-area'
+		})
+	})
+	$(document).ready(()=>{
+		commentPlugin.init({
+			site_key: 'cc',
+			apiURL: 'http://mentor-program.co/mtr04group3/Karen%20Hsiao/week13/hw2_webpack',
+			containerSelector: '.container-area2'
+		})
+	})
+
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="container-area">
+		</div>
+		<div class="container-area2">
+		</div>
+	</div>
+
+</body>
+</html>

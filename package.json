@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/Lidemy/mentor-program-4th#readme",
   "dependencies": {
+    "jquery": "^3.5.1",
     "request": "^2.88.2"
   },
   "devDependencies": {
